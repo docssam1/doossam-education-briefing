@@ -1,0 +1,15 @@
+[Unit]
+Description=GFIELD Converter Gemini API
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/gfield-converter
+Environment=GEMINI_API_KEY=REPLACE_WITH_SERVER_KEY
+Environment=GEMINI_MODEL=gemini-1.5-flash
+ExecStart=/usr/bin/node /opt/gfield-converter/server.js
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
