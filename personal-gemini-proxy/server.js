@@ -597,6 +597,7 @@ function openGoogleAI()`
       var styles = [
         ["magazine", "잡지형"],
         ["story", "매거진형"],
+        ["blog", "블로그형"],
         ["insight", "인사이트형"],
         ["classic", "정석형"],
         ["random", "랜덤형"]
