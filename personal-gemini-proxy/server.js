@@ -408,6 +408,42 @@ function openGoogleAI()`
     display: none !important;
   }
 
+  .tb-visitor-flash {
+    position: fixed !important;
+    top: 12px !important;
+    left: 50% !important;
+    transform: translate(-50%, -14px) !important;
+    z-index: 100000 !important;
+    min-width: min(520px, calc(100vw - 28px)) !important;
+    padding: 13px 18px !important;
+    border-radius: 999px !important;
+    background: rgba(17, 24, 39, .94) !important;
+    color: #ffffff !important;
+    box-shadow: 0 18px 44px rgba(15, 23, 42, .28) !important;
+    font-family: Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 850 !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity .18s ease, transform .18s ease !important;
+  }
+
+  .tb-visitor-flash.show {
+    opacity: 1 !important;
+    transform: translate(-50%, 0) !important;
+  }
+
+  @media (max-width: 520px) {
+    .tb-visitor-flash {
+      top: 8px !important;
+      padding: 11px 14px !important;
+      font-size: 13px !important;
+      border-radius: 18px !important;
+    }
+  }
+
   .gfield-extra-box { display: none !important; }
 </style>
 <script>
@@ -508,6 +544,34 @@ function openGoogleAI()`
   updateApiKeyState = function () {};
   hasSeenMakerPromoRecently = function () { return true; };
   markMakerPromoSeenNow = function () {};
+
+  function showVisitorFlash() {
+    var bar = document.createElement("div");
+    bar.className = "tb-visitor-flash";
+    bar.textContent = "당신은 거북이 버프 방문자입니다";
+    document.body.appendChild(bar);
+
+    function show(text) {
+      bar.textContent = text;
+      requestAnimationFrame(function () { bar.classList.add("show"); });
+      setTimeout(function () {
+        bar.classList.remove("show");
+        setTimeout(function () { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 220);
+      }, 1000);
+    }
+
+    fetch("https://buff-counter.charli4.workers.dev/hit?t=" + Date.now(), { cache: "no-store" })
+      .then(function (res) { if (!res.ok) throw new Error("counter"); return res.json(); })
+      .then(function (data) {
+        var count = Number(data && data.count);
+        var text = Number.isFinite(count) && count > 0
+          ? "당신은 거북이 버프 " + count.toLocaleString("ko-KR") + "번째 방문자입니다"
+          : "당신은 거북이 버프 방문자입니다";
+        show(text);
+      })
+      .catch(function () { show("당신은 거북이 버프 방문자입니다"); });
+  }
+
   openPopup = function (id) {
     if (id === "makerPromoPopup" || id === "spicyPopup" || id === "kitPopup") return;
     var el = document.getElementById(id);
@@ -655,6 +719,7 @@ function openGoogleAI()`
 
   updatePersonalApiBox();
   simplifyPersonalScreen();
+  showVisitorFlash();
   if (typeof switchStyleMode === "function") switchStyleMode(currentStyleMode || "random");
 })();
 </script>`;
