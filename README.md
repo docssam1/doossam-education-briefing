@@ -1,4 +1,4 @@
-# doossam의 교육 브리핑
+# DOCSSAM의 교육 브리핑
 
 GitHub Pages에서 볼 수 있는 인스타그램형 교육 칼럼/브리핑 게시판입니다.
 데이터와 HTML 파일은 Google Apps Script를 통해 Google Sheet와 Google Drive에 저장합니다.

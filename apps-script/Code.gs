@@ -308,7 +308,7 @@ function ensureSpreadsheet_(props) {
   const sheetId = props.getProperty(SHEET_PROPERTY);
   if (sheetId) return SpreadsheetApp.openById(sheetId);
 
-  const ss = SpreadsheetApp.create('doossam education briefing');
+  const ss = SpreadsheetApp.create('DOCSSAM education briefing');
   props.setProperty(SHEET_PROPERTY, ss.getId());
   return ss;
 }
@@ -317,7 +317,7 @@ function ensureDriveFolder_(props) {
   const folderId = props.getProperty(FOLDER_PROPERTY);
   if (folderId) return DriveApp.getFolderById(folderId);
 
-  const folder = DriveApp.createFolder('doossam education briefing html');
+  const folder = DriveApp.createFolder('DOCSSAM education briefing html');
   props.setProperty(FOLDER_PROPERTY, folder.getId());
   return folder;
 }

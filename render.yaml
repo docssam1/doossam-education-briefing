@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: gfield-magazine-node
+    name: docssam-magazine-node
     runtime: node
     rootDir: personal-gemini-proxy
     buildCommand: npm install
@@ -9,4 +9,3 @@ services:
     envVars:
       - key: GEMINI_API_KEY
         sync: false
-
