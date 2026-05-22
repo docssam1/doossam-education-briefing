@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: gfield-magazine-node
+    runtime: node
+    rootDir: personal-gemini-proxy
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+

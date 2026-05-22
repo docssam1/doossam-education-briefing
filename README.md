@@ -43,3 +43,20 @@ GitHub Pages에서 볼 수 있는 인스타그램형 교육 칼럼/브리핑 게
 - Google Sheet ID, Drive Folder ID, 등록 토큰은 Apps Script Properties에 저장합니다.
 - 등록 토큰은 GitHub 코드에 넣지 말고, 페이지의 관리자 토큰 입력칸에만 넣어 사용하세요.
 - 토큰이 없는 상태로 공개하면 누구나 글을 등록할 수 있습니다.
+
+## Node 서버 배포 (Apps Script 없이)
+
+`localhost:8787`에서 쓰던 GFIELD 매거진 변환 서버를 그대로 배포할 수 있습니다.
+
+- 서버 코드 위치: `personal-gemini-proxy/`
+- 소스 HTML: `gfield-magazine-patched.html`
+- 배포 설정: `render.yaml`
+
+Render 기준:
+
+1. `docssam1/doossam-education-briefing` 저장소를 Render에 연결합니다.
+2. Blueprint 배포를 선택하면 `render.yaml`이 자동 인식됩니다.
+3. 환경변수 `GEMINI_API_KEY` 값을 설정합니다.
+4. 배포 후 발급 URL로 접속합니다.
+
+이 경로는 Apps Script를 사용하지 않고 Node 서버가 직접 `/api/generate`를 처리합니다.
