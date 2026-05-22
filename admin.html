@@ -3,436 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DOCSSAM 교육 브리핑 관리자</title>
+  <title>GFIELD INSIGHT STUDIO</title>
   <style>
-    :root {
-      --bg: #f6f7f9;
-      --paper: #ffffff;
-      --ink: #111827;
-      --muted: #64748b;
-      --line: #e5e7eb;
-      --brand: #155e75;
-      --danger: #dc2626;
-      --soft: #ecfeff;
-      --shadow: 0 18px 50px rgba(15, 23, 42, .10);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-    }
-    .shell {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 34px 0 76px;
-    }
-    .top {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 22px;
-      align-items: end;
-      padding: 34px 0 26px;
-      border-bottom: 1px solid var(--line);
-    }
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 950;
-      color: var(--brand);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(36px, 6vw, 72px);
-      line-height: .98;
-      letter-spacing: -1.2px;
-      font-weight: 950;
-    }
-    .lead {
-      margin: 16px 0 0;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 16px;
-      max-width: 700px;
-    }
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .btn {
-      border: 1px solid var(--line);
-      background: var(--paper);
-      color: var(--ink);
-      border-radius: 999px;
-      padding: 12px 18px;
-      font-weight: 900;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, .04);
-    }
-    .btn.primary {
-      background: var(--brand);
-      border-color: var(--brand);
-      color: white;
-    }
-    .btn.danger {
-      background: #fff1f2;
-      border-color: #fecdd3;
-      color: var(--danger);
-    }
-    .layout {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 24px;
-      margin-top: 28px;
-      align-items: start;
-    }
-    .panel {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
-    .panel.sticky {
-      position: sticky;
-      top: 18px;
-    }
-    h2 {
-      margin: 0 0 16px;
-      font-size: 18px;
-    }
-    .field { margin-bottom: 12px; }
-    label {
-      display: block;
-      margin-bottom: 7px;
-      color: #334155;
-      font-size: 12px;
-      font-weight: 900;
-    }
-    input, textarea, select {
-      width: 100%;
-      border: 1px solid #d9dee8;
-      border-radius: 14px;
-      padding: 13px 14px;
-      font: inherit;
-      color: var(--ink);
-      background: #fbfcfd;
-      outline: none;
-    }
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-      line-height: 1.7;
-    }
-    input:focus, textarea:focus, select:focus {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 4px rgba(21, 94, 117, .10);
-      background: white;
-    }
-    .hint {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.7;
-      margin: 10px 0 0;
-    }
-    .list {
-      display: grid;
-      gap: 14px;
-    }
-    .item {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-      background: #fff;
-    }
-    .item-meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .item h3 {
-      margin: 0 0 9px;
-      line-height: 1.35;
-    }
-    .item p {
-      margin: 0;
-      color: #475569;
-      line-height: 1.7;
-      font-size: 14px;
-    }
-    .item-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-    .small {
-      padding: 9px 13px;
-      font-size: 13px;
-    }
-    .empty {
-      padding: 36px 20px;
-      text-align: center;
-      color: var(--muted);
-      border: 1px dashed #cbd5e1;
-      border-radius: 22px;
-      background: #fff;
-    }
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%);
-      background: #111827;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 800;
-      display: none;
-      z-index: 80;
-    }
-    .toast.show { display: block; }
-    @media (max-width: 920px) {
-      .top, .layout { grid-template-columns: 1fr; }
-      .actions { justify-content: flex-start; }
-      .panel.sticky { position: static; }
-    }
+    :root{--bg:#f4f6fb;--paper:#fff;--ink:#111827;--muted:#667085;--line:#e5e7eb;--brand:#16417c;--deep:#101a34;--gold:#c79645;--soft:#eef4ff;--danger:#dc2626;--shadow:0 18px 50px rgba(15,23,42,.10)}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 12% 0,#e7edff,transparent 30%),var(--bg);color:var(--ink);font-family:Pretendard,'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif}.wrap{width:min(1240px,calc(100% - 28px));margin:auto;padding:26px 0 70px}.top{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;margin-bottom:22px}.eyebrow{font-size:12px;font-weight:950;letter-spacing:2px;color:var(--brand);text-transform:uppercase}.top h1{margin:10px 0 10px;font-size:clamp(38px,6vw,72px);line-height:.95;letter-spacing:-1.4px}.lead{margin:0;color:var(--muted);line-height:1.75}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 16px;font-weight:900;cursor:pointer;text-decoration:none;color:var(--ink);box-shadow:0 8px 20px rgba(15,23,42,.04)}.btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}.btn.gold{background:var(--gold);border-color:var(--gold);color:#fff}.btn.danger{background:#fff1f2;border-color:#fecdd3;color:var(--danger)}.layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:22px}.panel h2{margin:0 0 16px;font-size:19px}.field{margin-bottom:12px}label{display:block;margin-bottom:7px;color:#334155;font-size:12px;font-weight:900}input,select,textarea{width:100%;border:1px solid #d9dee8;border-radius:15px;padding:13px 14px;font:inherit;background:#fbfcfd;color:var(--ink);outline:none}textarea{min-height:132px;line-height:1.7;resize:vertical}.source{min-height:300px}.code{min-height:420px;font-family:Consolas,monospace;font-size:13px}input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 4px rgba(22,65,124,.10);background:#fff}.row{display:flex;gap:10px;flex-wrap:wrap}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hint{margin:10px 0 0;color:var(--muted);font-size:12px;line-height:1.65}.tabs{display:flex;gap:8px;margin-bottom:12px}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-weight:900;cursor:pointer;color:#475467}.tab.active{background:var(--deep);border-color:var(--deep);color:#fff}.pane{display:none}.pane.active{display:block}.preview{min-height:520px;border:1px dashed #cbd5e1;border-radius:20px;background:#f8fafc;padding:12px}.preview iframe{width:100%;height:620px;border:0;background:#fff;border-radius:15px}.thumbbox{aspect-ratio:16/9;border-radius:20px;background:linear-gradient(135deg,#eaf1ff,#fff7e6);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:var(--brand);font-weight:950;line-height:1.45}.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111827;color:white;border-radius:999px;padding:12px 18px;font-weight:900;display:none;z-index:80}.toast.show{display:block}@media(max-width:980px){.top,.layout{grid-template-columns:1fr}.actions{justify-content:flex-start}}@media(max-width:640px){.wrap{width:min(100% - 20px,1240px)}.two{grid-template-columns:1fr}.panel{padding:16px}}
   </style>
 </head>
 <body>
-  <main class="shell">
+  <main class="wrap">
     <header class="top">
-      <div>
-        <div class="eyebrow">admin console</div>
-        <h1>교육 브리핑<br>관리자</h1>
-        <p class="lead">게시글 등록과 삭제를 관리합니다. HTML 결과물 저장은 별도 저장소 화면에서 처리합니다.</p>
-      </div>
-      <nav class="actions">
-        <a class="btn" href="./index.html">공개 게시판</a>
-        <a class="btn" href="./html-storage.html">HTML 저장소</a>
-        <button class="btn primary" type="button" onclick="loadPosts()">새로고침</button>
-      </nav>
+      <div><div class="eyebrow">GFIELD INSIGHT STUDIO</div><h1>교육 인사이트<br>제작기</h1><p class="lead">자료를 붙여넣으면 AI가 교육 정보를 종합해 매거진형 콘텐츠로 구성합니다. 소스와 미리보기를 확인한 뒤 게시 준비를 진행합니다.</p></div>
+      <nav class="actions"><a class="btn" href="./index.html">공개 메인</a><button class="btn" type="button" onclick="clearDraft()">초기화</button><button class="btn primary" type="button" onclick="generateInsight()">교육 인사이트 생성</button></nav>
     </header>
-
     <section class="layout">
-      <aside class="panel sticky">
-        <h2>게시글 등록</h2>
-        <div class="field">
-          <label for="apiUrl">Apps Script URL</label>
-          <input id="apiUrl" placeholder="https://script.google.com/macros/s/.../exec">
-        </div>
-        <div class="field">
-          <label for="token">관리자 토큰</label>
-          <input id="token" type="password" placeholder="BOARD_WRITE_TOKEN">
-        </div>
-        <div class="field">
-          <label for="title">제목</label>
-          <input id="title" placeholder="예: 이번 주 대치동 교육 뉴스">
-        </div>
-        <div class="field">
-          <label for="category">분류</label>
-          <select id="category">
-            <option>교육 브리핑</option>
-            <option>입시 뉴스</option>
-            <option>대치동 리포트</option>
-            <option>학원가 트렌드</option>
-            <option>정책 분석</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="summary">요약</label>
-          <textarea id="summary" placeholder="카드에 보일 짧은 요약"></textarea>
-        </div>
-        <div class="field">
-          <label for="body">본문</label>
-          <textarea id="body" placeholder="자세히 보기에 들어갈 전체 내용"></textarea>
-        </div>
-        <div class="field">
-          <label for="imageUrl">이미지 URL</label>
-          <input id="imageUrl" placeholder="선택 사항">
-        </div>
-        <div class="field">
-          <label for="sourceUrl">출처/자세히 보기 링크</label>
-          <input id="sourceUrl" placeholder="선택 사항">
-        </div>
-        <button class="btn primary" type="button" style="width:100%" onclick="submitPost()">등록하기</button>
-        <p class="hint">Apps Script URL과 관리자 토큰은 이 브라우저에만 저장됩니다. 공개 게시판에는 삭제/등록 UI가 보이지 않습니다.</p>
+      <aside class="panel">
+        <h2>자료 입력</h2>
+        <div class="two"><div class="field"><label>제목</label><input id="title" placeholder="예: AI 시대의 초등 수학 학습 변화"></div><div class="field"><label>형식</label><select id="tone"><option>인사이트 매거진</option><option>칼럼형</option><option>블로그형</option><option>잡지형</option></select></div></div>
+        <div class="two"><div class="field"><label>카테고리</label><select id="category"><option>교육정책</option><option>입시/진학</option><option>학습법</option><option>에듀테크/AI</option><option>수학·사고력</option><option>학원가 이슈</option></select></div><div class="field"><label>썸네일 이미지 URL</label><input id="imageUrl" placeholder="없으면 자동 썸네일 사용"></div></div>
+        <div class="field"><label>출처/참고 링크</label><input id="sourceUrl" placeholder="기사, 보고서, 이미지 출처 등"></div>
+        <div class="field"><label>자료 붙여넣기</label><textarea id="source" class="source" placeholder="검색한 교육 뉴스, 정책 자료, 블로그 글, 보고서 요약 등을 붙여넣으세요. 출처가 있으면 함께 남겨주세요."></textarea></div>
+        <div class="row"><button class="btn primary" type="button" onclick="generateInsight()">교육 인사이트 생성</button><button class="btn" type="button" onclick="makeBasicHtml()">기본 HTML 만들기</button></div>
+        <p class="hint">VPS는 AI API만 호출합니다. 공개 게시판과 방문자 트래픽은 GitHub Pages 기준으로 운영합니다.</p>
+        <h2 style="margin-top:22px">게시 정보</h2>
+        <div class="field"><label>카드 요약</label><textarea id="summary" placeholder="공개 메인 카드에 보일 요약"></textarea></div>
+        <div class="thumbbox" id="thumbPreview">GFIELD EDUCATION INSIGHT<br>자동 썸네일</div>
       </aside>
-
       <section class="panel">
-        <h2>게시글 관리</h2>
-        <div class="list" id="list"></div>
+        <h2>결과 확인</h2>
+        <div class="tabs"><button class="tab active" id="tabPreview" onclick="showTab('preview')">미리보기</button><button class="tab" id="tabSource" onclick="showTab('source')">소스 보기</button></div>
+        <div class="pane active" id="panePreview"><div class="preview" id="preview">미리보기 영역</div></div>
+        <div class="pane" id="paneSource"><textarea id="htmlSource" class="code" placeholder="생성된 HTML 소스가 여기에 표시됩니다. 직접 수정할 수 있습니다."></textarea><div class="row" style="margin-top:10px"><button class="btn" onclick="refreshPreview()">미리보기 갱신</button><button class="btn" onclick="copySource()">소스 복사</button></div></div>
+        <div class="row" style="margin-top:14px"><button class="btn gold" onclick="preparePost()">게시 준비</button><button class="btn primary" onclick="downloadHtml()">HTML 다운로드</button></div>
+        <p class="hint">1차 버전은 게시 준비 데이터 생성까지 지원합니다. Google Drive/GitHub 자동 등록은 다음 단계에서 연결합니다.</p>
       </section>
     </section>
   </main>
   <div class="toast" id="toast"></div>
-
   <script>
-    const APPS_SCRIPT_URL = "";
-    let posts = [];
-
-    function boot() {
-      document.getElementById("apiUrl").value = localStorage.getItem("briefing_api_url") || APPS_SCRIPT_URL || "";
-      document.getElementById("token").value = localStorage.getItem("briefing_token") || "";
-      loadPosts();
-    }
-
-    function getApiUrl() {
-      return (document.getElementById("apiUrl").value || localStorage.getItem("briefing_api_url") || APPS_SCRIPT_URL || "").trim();
-    }
-
-    function getToken() {
-      return (document.getElementById("token").value || localStorage.getItem("briefing_token") || "").trim();
-    }
-
-    function loadPosts() {
-      const url = getApiUrl();
-      if (!url) {
-        document.getElementById("list").innerHTML = '<div class="empty">Apps Script URL을 입력하면 게시글 목록이 표시됩니다.</div>';
-        return;
-      }
-      localStorage.setItem("briefing_api_url", url);
-      const callback = "adminPostsCallback_" + Date.now();
-      window[callback] = function(data) {
-        delete window[callback];
-        script.remove();
-        if (data && data.ok) {
-          posts = data.posts || [];
-          renderPosts();
-        } else {
-          showToast("목록을 불러오지 못했습니다");
-        }
-      };
-      const script = document.createElement("script");
-      script.src = url + "?action=listPosts&callback=" + callback;
-      script.onerror = function() {
-        delete window[callback];
-        showToast("Apps Script URL을 확인해주세요");
-      };
-      document.body.appendChild(script);
-    }
-
-    function renderPosts() {
-      const list = document.getElementById("list");
-      if (!posts.length) {
-        list.innerHTML = '<div class="empty">아직 등록된 게시글이 없습니다.</div>';
-        return;
-      }
-      list.innerHTML = posts.map(post => [
-        '<article class="item">',
-        '  <div class="item-meta"><span>' + escapeHtml(post.category || "교육 브리핑") + '</span><span>' + formatDate(post.createdAt) + '</span></div>',
-        '  <h3>' + escapeHtml(post.title) + '</h3>',
-        '  <p>' + escapeHtml(post.summary || "") + '</p>',
-        '  <div class="item-actions">',
-        post.htmlFileId ? '    <a class="btn small primary" href="./html-viewer.html?id=' + encodeURIComponent(post.htmlFileId) + '" target="_blank" rel="noopener">HTML 보기</a>' : '',
-        post.sourceUrl ? '    <a class="btn small" href="' + escapeAttr(post.sourceUrl) + '" target="_blank" rel="noopener">출처</a>' : '',
-        '    <button class="btn small danger" type="button" onclick="deletePost(\\'' + escapeJs(post.id) + '\\')">삭제</button>',
-        '  </div>',
-        '</article>'
-      ].join("")).join("");
-    }
-
-    async function submitPost() {
-      const url = getApiUrl();
-      if (!url) {
-        showToast("Apps Script URL을 먼저 입력해주세요");
-        return;
-      }
-      const token = getToken();
-      localStorage.setItem("briefing_api_url", url);
-      if (token) localStorage.setItem("briefing_token", token);
-
-      const payload = {
-        token,
-        title: value("title"),
-        category: value("category"),
-        summary: value("summary"),
-        body: value("body"),
-        imageUrl: value("imageUrl"),
-        sourceUrl: value("sourceUrl")
-      };
-      if (!payload.title || (!payload.summary && !payload.body)) {
-        showToast("제목과 내용을 입력해주세요");
-        return;
-      }
-      await postNoCors(url, payload, "등록 요청을 보냈습니다");
-      ["title", "summary", "body", "imageUrl", "sourceUrl"].forEach(id => document.getElementById(id).value = "");
-      setTimeout(loadPosts, 1600);
-    }
-
-    async function deletePost(id) {
-      const url = getApiUrl();
-      const token = getToken();
-      if (!url || !token) {
-        showToast("Apps Script URL과 관리자 토큰이 필요합니다");
-        return;
-      }
-      if (!confirm("이 게시글을 삭제할까요?")) return;
-      await postNoCors(url, { action: "deletePost", token, id }, "삭제 요청을 보냈습니다");
-      setTimeout(loadPosts, 1600);
-    }
-
-    async function postNoCors(url, payload, message) {
-      try {
-        await fetch(url, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
-        });
-        showToast(message);
-      } catch (err) {
-        showToast("요청 실패: Apps Script URL을 확인해주세요");
-      }
-    }
-
-    function value(id) {
-      return (document.getElementById(id).value || "").trim();
-    }
-
-    function formatDate(value) {
-      const date = new Date(value);
-      if (Number.isNaN(date.getTime())) return "";
-      return date.toLocaleDateString("ko-KR", { month: "short", day: "numeric" });
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-      clearTimeout(toast._timer);
-      toast._timer = setTimeout(() => toast.classList.remove("show"), 2400);
-    }
-
-    function escapeHtml(value) {
-      return String(value || "").replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
-      }[char]));
-    }
-
-    function escapeAttr(value) {
-      return escapeHtml(value).replace(/`/g, "&#096;");
-    }
-
-    function escapeJs(value) {
-      return String(value || "").replace(/\\/g, "\\\\").replace(/'/g, "\\'");
-    }
-
-    boot();
+    const API='/api/gemini';
+    const $=id=>document.getElementById(id);
+    function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+    function msg(t){toast.textContent=t;toast.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('show'),2200)}
+    function showTab(name){tabPreview.classList.toggle('active',name==='preview');tabSource.classList.toggle('active',name==='source');panePreview.classList.toggle('active',name==='preview');paneSource.classList.toggle('active',name==='source')}
+    function formatText(t){return esc(t).replace(/\[강조\]([\s\S]*?)\[\/강조\]/g,'<mark>$1</mark>').replace(/\n/g,'<br>')}
+    function makeArticle(title,body,tone){return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title><style>body{margin:0;background:#f4f6fb;color:#111827;font-family:Pretendard,Apple SD Gothic Neo,Noto Sans KR,sans-serif}.page{width:min(900px,calc(100% - 28px));margin:auto;padding:44px 0}.article{background:#fff;border-radius:30px;box-shadow:0 22px 70px rgba(15,23,42,.12);overflow:hidden}.hero{padding:42px;background:linear-gradient(135deg,#101a34,#16417c);color:white}.eyebrow{font-size:12px;font-weight:950;letter-spacing:2px;color:#dbeafe}.hero h1{margin:12px 0 12px;font-size:clamp(34px,6vw,64px);line-height:1.02}.tag{display:inline-block;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 12px;font-weight:900}.body{padding:36px;font-size:17px;line-height:1.9}.body mark{background:#fff2a8;padding:2px 5px;border-radius:6px;font-weight:800}</style></head><body><main class="page"><article class="article"><section class="hero"><div class="eyebrow">GFIELD EDUCATION INSIGHT</div><h1>${esc(title)}</h1><span class="tag">${esc(tone)}</span></section><section class="body">${formatText(body)}</section></article></main></body></html>`}
+    function makeBasicHtml(){const title=$('title').value.trim()||'교육 인사이트 브리핑';const body=$('source').value.trim()||'자료를 입력해주세요.';const html=makeArticle(title,body,$('tone').value);htmlSource.value=html;refreshPreview();showTab('preview');makeThumb();msg('기본 HTML 생성 완료')}
+    async function generateInsight(){const title=$('title').value.trim()||'교육 인사이트 브리핑';const source=$('source').value.trim();if(!source){msg('자료를 붙여넣어주세요');return}msg('AI가 자료를 종합하는 중');try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({title,tone:$('tone').value,source})});const data=await r.json();if(!r.ok||!data.ok)throw new Error(data.error||'AI 호출 실패');const text=data.text||source;summary.value=makeSummary(text);htmlSource.value=makeArticle(title,text,$('tone').value);refreshPreview();showTab('preview');makeThumb();msg('교육 인사이트 생성 완료')}catch(e){msg('AI 호출 실패: '+e.message)}}
+    function makeSummary(text){return String(text||'').replace(/[#*_`\[\]]/g,'').replace(/\n+/g,' ').slice(0,130)}
+    function refreshPreview(){const html=htmlSource.value;if(!html){preview.textContent='미리보기 영역';return}preview.innerHTML='<iframe srcdoc="'+esc(html)+'"></iframe>'}
+    function copySource(){navigator.clipboard.writeText(htmlSource.value||'');msg('소스 복사 완료')}
+    function makeThumb(){const title=$('title').value.trim()||'GFIELD EDUCATION INSIGHT';thumbPreview.innerHTML=esc($('category').value)+'<br>'+esc(title)}
+    function preparePost(){const post={title:$('title').value.trim(),category:$('category').value,summary:$('summary').value.trim(),imageUrl:$('imageUrl').value.trim(),sourceUrl:$('sourceUrl').value.trim(),html:htmlSource.value,createdAt:new Date().toISOString()};localStorage.setItem('gfield_pending_post',JSON.stringify(post));msg('게시 준비 데이터 저장 완료')}
+    function downloadHtml(){const blob=new Blob([htmlSource.value||''],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=($('title').value.trim()||'gfield-insight')+'.html';a.click();URL.revokeObjectURL(a.href)}
+    function clearDraft(){['title','source','summary','imageUrl','sourceUrl','htmlSource'].forEach(id=>$(id).value='');preview.textContent='미리보기 영역';makeThumb();msg('초기화 완료')}
+    ['title','category'].forEach(id=>$(id).addEventListener('input',makeThumb));makeThumb();
   </script>
 </body>
 </html>
