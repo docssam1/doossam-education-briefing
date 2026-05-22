@@ -3,426 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DOCSSAM 교육 브리핑</title>
+  <title>GFIELD EDUCATION INSIGHT</title>
+  <meta name="description" content="교육의 흐름을 읽고, 배움의 방향을 설계하는 GFIELD 교육 인사이트 매거진">
   <style>
-    :root {
-      --bg: #f6f7f9;
-      --paper: #ffffff;
-      --ink: #111827;
-      --muted: #64748b;
-      --line: #e5e7eb;
-      --brand: #0f4c81;
-      --brand2: #155e75;
-      --soft: #ecfeff;
-      --shadow: 0 18px 50px rgba(15, 23, 42, .10);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      letter-spacing: 0;
-    }
-    a { color: inherit; }
-    .shell {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 34px 0 76px;
-    }
-    .top {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 24px;
-      align-items: end;
-      padding: 42px 0 28px;
-      border-bottom: 1px solid var(--line);
-      background: linear-gradient(180deg, #f8fbff 0%, rgba(248, 251, 255, 0) 100%);
-      border-radius: 24px;
-      padding-left: 24px;
-      padding-right: 24px;
-    }
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 950;
-      color: var(--brand);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(40px, 7vw, 88px);
-      line-height: .92;
-      font-weight: 950;
-      letter-spacing: -1.5px;
-    }
-    .lead {
-      margin: 18px 0 0;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.8;
-      max-width: 680px;
-    }
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .btn {
-      border: 1px solid var(--line);
-      background: var(--paper);
-      color: var(--ink);
-      border-radius: 999px;
-      padding: 12px 18px;
-      font-weight: 900;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, .04);
-    }
-    .btn.primary {
-      background: var(--brand);
-      border-color: var(--brand);
-      color: white;
-    }
-    .feed {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-      margin-top: 28px;
-    }
-    .card {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    .thumb {
-      aspect-ratio: 1 / .78;
-      background:
-        linear-gradient(135deg, rgba(15,76,129,.18), rgba(21,94,117,.08)),
-        radial-gradient(circle at 25% 20%, rgba(255,255,255,.9), transparent 35%),
-        #eef5ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--brand);
-      font-size: 15px;
-      font-weight: 950;
-      text-align: center;
-      padding: 18px;
-      line-height: 1.5;
-    }
-    .thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .card-body {
-      padding: 18px;
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-    }
-    .meta {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .badge {
-      color: var(--brand);
-      background: var(--soft);
-      border: 1px solid #cffafe;
-      border-radius: 999px;
-      padding: 4px 9px;
-      white-space: nowrap;
-    }
-    .card h2 {
-      margin: 0 0 10px;
-      font-size: 20px;
-      line-height: 1.35;
-      letter-spacing: -.4px;
-    }
-    .summary {
-      margin: 0;
-      color: #475569;
-      font-size: 14px;
-      line-height: 1.75;
-      flex: 1;
-    }
-    .read {
-      margin-top: 16px;
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      color: var(--brand);
-      font-weight: 950;
-      font-size: 13px;
-      text-decoration: none;
-      border: 0;
-      background: transparent;
-      padding: 0;
-      cursor: pointer;
-    }
-    .empty {
-      grid-column: 1 / -1;
-      padding: 44px 20px;
-      text-align: center;
-      color: var(--muted);
-      border: 1px dashed #cbd5e1;
-      border-radius: 22px;
-      background: #fff;
-      line-height: 1.8;
-    }
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, .58);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 22px;
-      z-index: 50;
-    }
-    .modal.open { display: flex; }
-    .modal-card {
-      width: min(760px, 100%);
-      max-height: 88vh;
-      overflow: auto;
-      background: white;
-      border-radius: 26px;
-      box-shadow: 0 30px 90px rgba(0,0,0,.25);
-    }
-    .modal-hero {
-      min-height: 220px;
-      background: linear-gradient(135deg, #164e63, #0f766e);
-      color: white;
-      padding: 34px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-    .modal-hero h2 {
-      margin: 0;
-      font-size: clamp(28px, 5vw, 46px);
-      line-height: 1.08;
-    }
-    .modal-content {
-      padding: 28px 34px 34px;
-      line-height: 1.9;
-      color: #334155;
-      white-space: pre-wrap;
-    }
-    .modal-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-    .state {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%);
-      background: #111827;
-      color: white;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 800;
-      display: none;
-      z-index: 80;
-    }
-    .state.show { display: block; }
-    @media (max-width: 980px) {
-      .top { grid-template-columns: 1fr; }
-      .actions { justify-content: flex-start; }
-      .feed { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 640px) {
-      .shell { width: min(100% - 22px, 1120px); padding-top: 14px; }
-      .top { padding: 24px 14px 18px; border-radius: 18px; }
-      .feed { grid-template-columns: 1fr; }
-      .modal-content, .modal-hero { padding-left: 22px; padding-right: 22px; }
-    }
+    :root{--bg:#f4f6fb;--paper:#fff;--ink:#111827;--muted:#667085;--line:#e5e7eb;--brand:#16417c;--deep:#101a34;--gold:#c79645;--soft:#eef4ff;--shadow:0 22px 60px rgba(15,23,42,.12)}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 12% 0,#e7edff,transparent 30%),var(--bg);color:var(--ink);font-family:Pretendard,'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif}a{text-decoration:none;color:inherit}.wrap{width:min(1180px,calc(100% - 28px));margin:auto;padding:28px 0 70px}.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}.logo{font-weight:950;letter-spacing:.5px;color:var(--deep)}.logo span{color:var(--brand)}.navlinks{display:flex;gap:10px;flex-wrap:wrap}.pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 14px;font-size:13px;font-weight:850;color:#344054}.hero{position:relative;overflow:hidden;border-radius:34px;background:linear-gradient(135deg,#111827,#16417c 55%,#5f4b8b);color:#fff;box-shadow:var(--shadow);padding:46px}.hero:after{content:'';position:absolute;right:-80px;top:-90px;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.13)}.eyebrow{font-size:12px;font-weight:950;letter-spacing:2px;text-transform:uppercase;color:#dbeafe}.hero h1{position:relative;margin:12px 0 14px;font-size:clamp(42px,7vw,86px);line-height:.95;letter-spacing:-2px}.lead{position:relative;margin:0;color:#dbeafe;font-size:18px;line-height:1.75;max-width:720px}.hero-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:end}.flash{display:grid;gap:12px}.flash-card{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:18px;backdrop-filter:blur(10px)}.flash-card b{display:block;font-size:15px;margin-bottom:7px}.flash-card p{margin:0;color:#e5e7eb;line-height:1.65;font-size:13px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin:34px 0 16px}.section-head h2{margin:0;font-size:28px;letter-spacing:-.8px}.section-head p{margin:6px 0 0;color:var(--muted);line-height:1.6}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow);transition:.18s}.card:hover{transform:translateY(-3px)}.thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#eaf1ff,#fff7e6);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--brand);font-weight:950;line-height:1.45;position:relative}.thumb:before{content:attr(data-category);position:absolute;left:14px;top:14px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 9px;font-size:11px;color:#475467}.new{position:absolute;right:14px;top:14px;background:#ff4d4f;color:#fff;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:950}.body{padding:18px}.meta{font-size:12px;color:var(--muted);font-weight:800;margin-bottom:9px}.body h3{margin:0 0 10px;font-size:20px;line-height:1.35;letter-spacing:-.4px}.summary{margin:0;color:#475467;font-size:14px;line-height:1.75}.read{display:inline-block;margin-top:14px;color:var(--brand);font-weight:950;font-size:13px}.categories{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}.cat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;min-height:126px;box-shadow:0 12px 34px rgba(15,23,42,.08)}.cat b{display:block;color:var(--deep);margin-bottom:8px}.cat span{color:var(--muted);font-size:13px;line-height:1.55}.footer{margin-top:34px;padding:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}.modal{position:fixed;inset:0;background:rgba(15,23,42,.62);display:none;align-items:center;justify-content:center;padding:22px;z-index:20}.modal.open{display:flex}.modal-card{width:min(860px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:28px;box-shadow:0 30px 100px rgba(0,0,0,.28)}.modal-hero{background:linear-gradient(135deg,#101a34,#16417c);color:#fff;padding:34px}.modal-hero h2{margin:8px 0 0;font-size:clamp(28px,5vw,52px);line-height:1.08}.modal-body{padding:30px;line-height:1.9;white-space:pre-wrap;color:#334155}.close{float:right;border:0;background:#fff;color:#111827;border-radius:999px;padding:8px 12px;font-weight:900;cursor:pointer}@media(max-width:980px){.hero-grid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(3,1fr)}}@media(max-width:640px){.wrap{width:min(100% - 20px,1180px)}.hero{padding:28px}.grid,.categories{grid-template-columns:1fr}.section-head{display:block}}
   </style>
 </head>
 <body>
-  <main class="shell">
-    <header class="top">
-      <div>
-        <div class="eyebrow">DOCSSAM EDUCATION BRIEFING</div>
-        <h1>DOCSSAM의<br>교육 브리핑</h1>
-        <p class="lead">입시, 교육 정책, 학원가 흐름을 짧고 선명하게 모아두는 공개 칼럼 보드입니다.</p>
+  <main class="wrap">
+    <nav class="nav">
+      <div class="logo"><span>GFIELD</span> EDUCATION INSIGHT</div>
+      <div class="navlinks"><a class="pill" href="#new">NEW</a><a class="pill" href="#categories">영역별 보기</a><a class="pill" href="./admin.html">제작기</a></div>
+    </nav>
+    <section class="hero">
+      <div class="hero-grid">
+        <div><div class="eyebrow">GFIELD EDUCATION INSIGHT</div><h1>교육의 흐름을 읽고,<br>배움의 방향을 설계하다</h1><p class="lead">흩어진 교육 뉴스, 정책 변화, 입시 흐름, 학습 트렌드를 하나의 인사이트로 연결하는 교육 매거진입니다.</p></div>
+        <div class="flash"><div class="flash-card"><b>오늘의 관점</b><p>단순 정보 요약을 넘어 교육 현상의 흐름과 의미를 해석합니다.</p></div><div class="flash-card"><b>자료 기반 브리핑</b><p>뉴스, 보고서, 현장 자료를 종합해 읽기 쉬운 매거진 콘텐츠로 정리합니다.</p></div></div>
       </div>
-      <nav class="actions">
-        <button class="btn" type="button" onclick="loadPosts()">새로고침</button>
-        <a class="btn primary" href="./admin.html">관리자</a>
-      </nav>
-    </header>
-
-    <section class="feed" id="feed"></section>
+    </section>
+    <section id="new"><div class="section-head"><div><h2>NEW 인사이트</h2><p>최근 등록된 교육 인사이트 5개를 빠르게 확인하세요.</p></div><a class="pill" href="#all">전체보기</a></div><div class="grid" id="newGrid"></div></section>
+    <section id="categories"><div class="section-head"><div><h2>영역별 게시판</h2><p>관심 주제별로 교육 이슈를 모아봅니다.</p></div></div><div class="categories" id="catGrid"></div></section>
+    <section id="all"><div class="section-head"><div><h2>전체 인사이트</h2><p>GFIELD 교육 인사이트 매거진의 전체 글입니다.</p></div></div><div class="grid" id="allGrid"></div></section>
+    <footer class="footer"><span>GFIELD EDUCATION INSIGHT</span><span>GitHub Pages public magazine · VPS API studio</span></footer>
   </main>
-
-  <div class="modal" id="modal" onclick="closeModal(event)">
-    <article class="modal-card">
-      <div class="modal-hero">
-        <div class="eyebrow" id="modalCategory" style="color:#a7f3d0">education briefing</div>
-        <h2 id="modalTitle"></h2>
-      </div>
-      <div class="modal-content">
-        <div id="modalBody"></div>
-        <div class="modal-links" id="modalLinks"></div>
-      </div>
-    </article>
-  </div>
-  <div class="state" id="state"></div>
-
+  <div class="modal" id="modal" onclick="if(event.target.id==='modal')modal.classList.remove('open')"><article class="modal-card"><div class="modal-hero"><button class="close" onclick="modal.classList.remove('open')">닫기</button><div class="eyebrow" id="mCat"></div><h2 id="mTitle"></h2></div><div class="modal-body" id="mBody"></div></article></div>
   <script>
-    const APPS_SCRIPT_URL = "";
-    const samplePosts = [
-      {
-        id: "sample-1",
-        createdAt: new Date().toISOString(),
-        title: "이번 주 교육 브리핑 샘플",
-        category: "교육 브리핑",
-        summary: "Apps Script URL을 연결하면 Google Sheet에 저장된 실제 칼럼이 이곳에 표시됩니다.",
-        body: "관리자 화면에서 게시글을 등록하고, HTML 저장소에서 매거진 결과물을 Drive에 저장하면 공개 게시판에 카드로 노출됩니다.",
-        imageUrl: "",
-        sourceUrl: ""
-      }
+    const posts=[
+      {title:'AI 시대의 초등 수학 학습 변화',category:'에듀테크/AI',date:'2026.05.23',summary:'정답 중심 학습에서 사고 과정과 설명 능력 중심 학습으로 이동하는 흐름을 살펴봅니다.',body:'AI 시대의 수학 학습은 단순 문제 풀이보다 사고 과정, 설명 능력, 개념 연결력을 요구합니다.\n\n[강조]정답을 맞히는 속도보다 왜 그렇게 생각했는지 설명하는 힘이 중요해지고 있습니다.[/강조]',featured:true},
+      {title:'교육정책 변화가 가정 학습에 주는 신호',category:'교육정책',date:'2026.05.22',summary:'정책 변화가 실제 학습 전략에 어떤 영향을 주는지 핵심만 정리합니다.',body:'정책은 교실과 평가, 가정 학습의 방향을 바꿉니다. 변화 자체보다 그 변화가 아이의 학습 루틴에 주는 신호를 읽어야 합니다.'},
+      {title:'입시 흐름을 볼 때 놓치기 쉬운 기준',category:'입시/진학',date:'2026.05.21',summary:'결과보다 과정, 스펙보다 방향성을 중심으로 입시 흐름을 해석합니다.',body:'입시는 단일 사건이 아니라 장기적인 학습 설계의 결과입니다.'},
+      {title:'학습법의 핵심은 지속 가능한 루틴',category:'학습법',date:'2026.05.20',summary:'과도한 학습량보다 꾸준한 복습 구조가 성과를 만듭니다.',body:'지속 가능한 루틴은 아이가 스스로 학습 감각을 유지하게 만드는 기본 장치입니다.'},
+      {title:'수학 사고력, 문제 수보다 질문의 질',category:'수학·사고력',date:'2026.05.19',summary:'사고력 학습은 많은 문제보다 좋은 질문에서 시작됩니다.',body:'좋은 질문은 아이가 개념을 다시 연결하게 만듭니다.'},
+      {title:'학원가 이슈를 읽는 방법',category:'학원가 이슈',date:'2026.05.18',summary:'학원가 정보는 홍보 문구보다 흐름과 기준으로 읽어야 합니다.',body:'정보가 많을수록 기준이 필요합니다.'}
     ];
-    let posts = [];
-
-    function getApiUrl() {
-      return (localStorage.getItem("briefing_api_url") || APPS_SCRIPT_URL || "").trim();
-    }
-
-    function loadPosts() {
-      const url = getApiUrl();
-      if (!url) {
-        posts = samplePosts;
-        renderPosts();
-        return;
-      }
-      showState("불러오는 중입니다");
-      const callback = "briefingCallback_" + Date.now();
-      window[callback] = function(data) {
-        delete window[callback];
-        script.remove();
-        hideState();
-        if (data && data.ok) {
-          posts = data.posts || [];
-          renderPosts();
-        } else {
-          showState("목록을 불러오지 못했습니다");
-        }
-      };
-      const script = document.createElement("script");
-      script.src = url + "?action=listPosts&callback=" + callback;
-      script.onerror = function() {
-        delete window[callback];
-        showState("Apps Script URL을 확인해주세요");
-      };
-      document.body.appendChild(script);
-    }
-
-    function renderPosts() {
-      const feed = document.getElementById("feed");
-      if (!posts.length) {
-        feed.innerHTML = '<div class="empty">아직 공개된 브리핑이 없습니다.</div>';
-        return;
-      }
-      feed.innerHTML = posts.map((post, index) => cardTemplate(post, index)).join("");
-    }
-
-    function cardTemplate(post, index) {
-      const image = post.imageUrl
-        ? '<img src="' + escapeAttr(post.imageUrl) + '" alt="">'
-        : '<span>' + escapeHtml(post.category || "교육 브리핑") + '<br>DOCSSAM BRIEFING</span>';
-      return [
-        '<article class="card">',
-        '  <div class="thumb">' + image + '</div>',
-        '  <div class="card-body">',
-        '    <div class="meta"><span class="badge">' + escapeHtml(post.category || "교육 브리핑") + '</span><span>' + formatDate(post.createdAt) + '</span></div>',
-        '    <h2>' + escapeHtml(post.title) + '</h2>',
-        '    <p class="summary">' + escapeHtml(post.summary || "") + '</p>',
-        '    <button class="read" type="button" onclick="openPost(' + index + ')">이전 칼럼 보기</button>',
-        '  </div>',
-        '</article>'
-      ].join("");
-    }
-
-    function openPost(index) {
-      const post = posts[index];
-      if (!post) return;
-      document.getElementById("modalCategory").textContent = post.category || "교육 브리핑";
-      document.getElementById("modalTitle").textContent = post.title || "";
-      document.getElementById("modalBody").textContent = post.body || post.summary || "";
-      const links = [];
-      if (post.htmlFileId) {
-        links.push('<a class="btn primary" href="./html-viewer.html?id=' + encodeURIComponent(post.htmlFileId) + '" target="_blank" rel="noopener">저장된 HTML 열기</a>');
-      }
-      if (post.sourceUrl) {
-        links.push('<a class="btn" href="' + escapeAttr(post.sourceUrl) + '" target="_blank" rel="noopener">출처 보기</a>');
-      }
-      document.getElementById("modalLinks").innerHTML = links.join("");
-      document.getElementById("modal").classList.add("open");
-    }
-
-    function closeModal(event) {
-      if (event.target.id === "modal") {
-        document.getElementById("modal").classList.remove("open");
-      }
-    }
-
-    function showState(message) {
-      const state = document.getElementById("state");
-      state.textContent = message;
-      state.classList.add("show");
-      clearTimeout(state._timer);
-      state._timer = setTimeout(hideState, 2600);
-    }
-
-    function hideState() {
-      document.getElementById("state").classList.remove("show");
-    }
-
-    function formatDate(value) {
-      const date = new Date(value);
-      if (Number.isNaN(date.getTime())) return "";
-      return date.toLocaleDateString("ko-KR", { month: "short", day: "numeric" });
-    }
-
-    function escapeHtml(value) {
-      return String(value || "").replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
-      }[char]));
-    }
-
-    function escapeAttr(value) {
-      return escapeHtml(value).replace(/`/g, "&#096;");
-    }
-
-    loadPosts();
+    const cats=['교육정책','입시/진학','학습법','에듀테크/AI','수학·사고력','학원가 이슈'];
+    function esc(v){return String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+    function card(p,i,isNew){return `<article class="card" onclick="openPost(${i})"><div class="thumb" data-category="${esc(p.category)}"><span>${esc(p.title)}</span>${isNew?'<span class="new">NEW</span>':''}</div><div class="body"><div class="meta">${esc(p.date)}</div><h3>${esc(p.title)}</h3><p class="summary">${esc(p.summary)}</p><span class="read">자세히 읽기 →</span></div></article>`}
+    function render(){newGrid.innerHTML=posts.slice(0,5).map((p,i)=>card(p,i,true)).join('');allGrid.innerHTML=posts.map((p,i)=>card(p,i,i<5)).join('');catGrid.innerHTML=cats.map(c=>`<a class="cat" href="#all"><b>${esc(c)}</b><span>${esc(c)} 관련 인사이트를 모아봅니다.</span></a>`).join('')}
+    function openPost(i){const p=posts[i];mCat.textContent=p.category;mTitle.textContent=p.title;mBody.textContent=p.body;modal.classList.add('open')}
+    render();
   </script>
 </body>
 </html>
-    .card:hover {
-      transform: translateY(-2px);
-      transition: transform .18s ease, box-shadow .18s ease;
-      box-shadow: 0 22px 48px rgba(15, 23, 42, .16);
-    }
