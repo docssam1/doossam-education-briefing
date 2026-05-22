@@ -26,9 +26,9 @@
     }
     a { color: inherit; }
     .shell {
-      width: min(1120px, calc(100% - 32px));
+      width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 28px 0 70px;
+      padding: 34px 0 76px;
     }
     .top {
       display: grid;
@@ -40,7 +40,7 @@
     }
     .eyebrow {
       font-size: 12px;
-      font-weight: 900;
+      font-weight: 950;
       color: var(--brand);
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -48,7 +48,7 @@
     }
     h1 {
       margin: 0;
-      font-size: clamp(38px, 7vw, 86px);
+      font-size: clamp(40px, 7vw, 88px);
       line-height: .92;
       font-weight: 950;
       letter-spacing: -1.5px;
@@ -58,9 +58,9 @@
       color: var(--muted);
       font-size: 17px;
       line-height: 1.8;
-      max-width: 640px;
+      max-width: 680px;
     }
-    .top-actions {
+    .actions {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
@@ -82,70 +82,18 @@
       border-color: var(--brand);
       color: white;
     }
-    .board {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 24px;
-      margin-top: 28px;
-      align-items: start;
-    }
-    .composer, .panel {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-    }
-    .composer {
-      padding: 22px;
-      position: sticky;
-      top: 18px;
-    }
-    .composer h2, .panel h2 {
-      margin: 0 0 16px;
-      font-size: 18px;
-      letter-spacing: -.2px;
-    }
-    .field { margin-bottom: 12px; }
-    label {
-      display: block;
-      margin-bottom: 7px;
-      color: #334155;
-      font-size: 12px;
-      font-weight: 900;
-    }
-    input, textarea, select {
-      width: 100%;
-      border: 1px solid #d9dee8;
-      border-radius: 14px;
-      padding: 13px 14px;
-      font: inherit;
-      color: var(--ink);
-      background: #fbfcfd;
-      outline: none;
-    }
-    textarea { min-height: 150px; resize: vertical; line-height: 1.7; }
-    input:focus, textarea:focus, select:focus {
-      border-color: var(--brand2);
-      box-shadow: 0 0 0 4px rgba(15, 118, 110, .10);
-      background: white;
-    }
-    .hint {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.7;
-      margin: 10px 0 0;
-    }
     .feed {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
+      margin-top: 28px;
     }
     .card {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 10px 34px rgba(15, 23, 42, .07);
+      box-shadow: var(--shadow);
       min-height: 100%;
       display: flex;
       flex-direction: column;
@@ -195,7 +143,7 @@
       padding: 4px 9px;
       white-space: nowrap;
     }
-    .card h3 {
+    .card h2 {
       margin: 0 0 10px;
       font-size: 20px;
       line-height: 1.35;
@@ -217,15 +165,20 @@
       font-weight: 950;
       font-size: 13px;
       text-decoration: none;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
     }
     .empty {
       grid-column: 1 / -1;
-      padding: 40px 20px;
+      padding: 44px 20px;
       text-align: center;
       color: var(--muted);
       border: 1px dashed #cbd5e1;
       border-radius: 22px;
       background: #fff;
+      line-height: 1.8;
     }
     .modal {
       position: fixed;
@@ -266,7 +219,13 @@
       color: #334155;
       white-space: pre-wrap;
     }
-    .toast {
+    .modal-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .state {
       position: fixed;
       left: 50%;
       bottom: 24px;
@@ -279,16 +238,15 @@
       display: none;
       z-index: 80;
     }
-    .toast.show { display: block; }
-    @media (max-width: 900px) {
-      .top, .board { grid-template-columns: 1fr; }
-      .top-actions { justify-content: flex-start; }
-      .composer { position: static; }
+    .state.show { display: block; }
+    @media (max-width: 980px) {
+      .top { grid-template-columns: 1fr; }
+      .actions { justify-content: flex-start; }
+      .feed { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 640px) {
-      .shell { width: min(100% - 22px, 1120px); padding-top: 10px; }
+      .shell { width: min(100% - 22px, 1120px); padding-top: 14px; }
       .feed { grid-template-columns: 1fr; }
-      .composer { padding: 16px; border-radius: 20px; }
       .modal-content, .modal-hero { padding-left: 22px; padding-right: 22px; }
     }
   </style>
@@ -299,64 +257,15 @@
       <div>
         <div class="eyebrow">doossam education briefing</div>
         <h1>doossam의<br>교육 브리핑</h1>
-        <p class="lead">입시, 교육 정책, 학원가 흐름을 짧고 선명하게 모아두는 칼럼 보드입니다. 이전 칼럼을 카드로 넘겨보고, 필요한 브리핑을 직접 등록할 수 있습니다.</p>
+        <p class="lead">입시, 교육 정책, 학원가 흐름을 짧고 선명하게 모아두는 공개 칼럼 보드입니다.</p>
       </div>
-      <div class="top-actions">
+      <nav class="actions">
         <button class="btn" type="button" onclick="loadPosts()">새로고침</button>
-        <a class="btn" href="./html-storage.html">HTML 저장소</a>
-        <a class="btn primary" href="#composer">브리핑 등록</a>
-      </div>
+        <a class="btn primary" href="./admin.html">관리자</a>
+      </nav>
     </header>
 
-    <section class="board">
-      <aside class="composer" id="composer">
-        <h2>게시판 등록</h2>
-        <div class="field">
-          <label for="apiUrl">Apps Script URL</label>
-          <input id="apiUrl" placeholder="https://script.google.com/macros/s/.../exec">
-        </div>
-        <div class="field">
-          <label for="token">관리자 토큰</label>
-          <input id="token" type="password" placeholder="Apps Script 속성 BOARD_WRITE_TOKEN">
-        </div>
-        <div class="field">
-          <label for="title">제목</label>
-          <input id="title" placeholder="예: 이번 주 대치동 교육 뉴스">
-        </div>
-        <div class="field">
-          <label for="category">분류</label>
-          <select id="category">
-            <option>교육 브리핑</option>
-            <option>입시 뉴스</option>
-            <option>대치동 리포트</option>
-            <option>학원가 트렌드</option>
-            <option>정책 분석</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="summary">요약</label>
-          <textarea id="summary" placeholder="카드에 보일 짧은 요약"></textarea>
-        </div>
-        <div class="field">
-          <label for="body">본문</label>
-          <textarea id="body" placeholder="자세히 보기에 들어갈 전체 내용"></textarea>
-        </div>
-        <div class="field">
-          <label for="imageUrl">이미지 URL</label>
-          <input id="imageUrl" placeholder="선택 사항">
-        </div>
-        <div class="field">
-          <label for="sourceUrl">자세히 보기 링크</label>
-          <input id="sourceUrl" placeholder="선택 사항">
-        </div>
-        <button class="btn primary" type="button" style="width:100%" onclick="submitPost()">등록하기</button>
-        <p class="hint">Apps Script URL과 관리자 토큰은 이 브라우저에만 저장됩니다. GitHub 코드에는 저장하지 않습니다.</p>
-      </aside>
-
-      <section>
-        <div class="feed" id="feed"></div>
-      </section>
-    </section>
+    <section class="feed" id="feed"></section>
   </main>
 
   <div class="modal" id="modal" onclick="closeModal(event)">
@@ -367,11 +276,11 @@
       </div>
       <div class="modal-content">
         <div id="modalBody"></div>
-        <p id="modalSource"></p>
+        <div class="modal-links" id="modalLinks"></div>
       </div>
     </article>
   </div>
-  <div class="toast" id="toast"></div>
+  <div class="state" id="state"></div>
 
   <script>
     const APPS_SCRIPT_URL = "";
@@ -379,39 +288,18 @@
       {
         id: "sample-1",
         createdAt: new Date().toISOString(),
-        title: "이번 주 대치동 교육 뉴스 핵심 요약",
-        category: "대치동 리포트",
-        summary: "메디컬 유학, 연휴 특강, 심야 스터디카페 이동, 사교육비 부담까지 이번 주 교육 이슈를 한눈에 정리했습니다.",
-        body: "Apps Script URL을 연결하면 Google Sheet에 저장된 실제 브리핑 목록이 이곳에 표시됩니다. 등록 폼을 통해 새 칼럼도 추가할 수 있습니다.",
+        title: "이번 주 교육 브리핑 샘플",
+        category: "교육 브리핑",
+        summary: "Apps Script URL을 연결하면 Google Sheet에 저장된 실제 칼럼이 이곳에 표시됩니다.",
+        body: "관리자 화면에서 게시글을 등록하고, HTML 저장소에서 매거진 결과물을 Drive에 저장하면 공개 게시판에 카드로 노출됩니다.",
         imageUrl: "",
-        sourceUrl: "",
-      },
-      {
-        id: "sample-2",
-        createdAt: new Date(Date.now() - 86400000).toISOString(),
-        title: "학부모가 봐야 할 입시 변화 체크포인트",
-        category: "입시 뉴스",
-        summary: "정책 변화는 headline보다 실제 준비 일정에 미치는 영향을 중심으로 읽어야 합니다.",
-        body: "카드형 피드는 짧게 훑고, 자세히 보기에서 전체 칼럼을 읽는 흐름으로 설계했습니다.",
-        imageUrl: "",
-        sourceUrl: "",
+        sourceUrl: ""
       }
     ];
-
     let posts = [];
 
     function getApiUrl() {
-      return (document.getElementById("apiUrl").value || localStorage.getItem("briefing_api_url") || APPS_SCRIPT_URL || "").trim();
-    }
-
-    function getToken() {
-      return (document.getElementById("token").value || localStorage.getItem("briefing_token") || "").trim();
-    }
-
-    function boot() {
-      document.getElementById("apiUrl").value = localStorage.getItem("briefing_api_url") || APPS_SCRIPT_URL || "";
-      document.getElementById("token").value = localStorage.getItem("briefing_token") || "";
-      loadPosts();
+      return (localStorage.getItem("briefing_api_url") || APPS_SCRIPT_URL || "").trim();
     }
 
     function loadPosts() {
@@ -421,24 +309,24 @@
         renderPosts();
         return;
       }
-
-      localStorage.setItem("briefing_api_url", url);
+      showState("불러오는 중입니다");
       const callback = "briefingCallback_" + Date.now();
       window[callback] = function(data) {
         delete window[callback];
         script.remove();
+        hideState();
         if (data && data.ok) {
           posts = data.posts || [];
           renderPosts();
         } else {
-          showToast("목록을 불러오지 못했습니다");
+          showState("목록을 불러오지 못했습니다");
         }
       };
       const script = document.createElement("script");
-      script.src = url + "?action=list&callback=" + callback;
+      script.src = url + "?action=listPosts&callback=" + callback;
       script.onerror = function() {
         delete window[callback];
-        showToast("Apps Script URL을 확인해주세요");
+        showState("Apps Script URL을 확인해주세요");
       };
       document.body.appendChild(script);
     }
@@ -446,7 +334,7 @@
     function renderPosts() {
       const feed = document.getElementById("feed");
       if (!posts.length) {
-        feed.innerHTML = '<div class="empty">아직 등록된 브리핑이 없습니다.</div>';
+        feed.innerHTML = '<div class="empty">아직 공개된 브리핑이 없습니다.</div>';
         return;
       }
       feed.innerHTML = posts.map((post, index) => cardTemplate(post, index)).join("");
@@ -461,53 +349,12 @@
         '  <div class="thumb">' + image + '</div>',
         '  <div class="card-body">',
         '    <div class="meta"><span class="badge">' + escapeHtml(post.category || "교육 브리핑") + '</span><span>' + formatDate(post.createdAt) + '</span></div>',
-        '    <h3>' + escapeHtml(post.title) + '</h3>',
+        '    <h2>' + escapeHtml(post.title) + '</h2>',
         '    <p class="summary">' + escapeHtml(post.summary || "") + '</p>',
         '    <button class="read" type="button" onclick="openPost(' + index + ')">이전 칼럼 보기</button>',
         '  </div>',
         '</article>'
       ].join("");
-    }
-
-    async function submitPost() {
-      const url = getApiUrl();
-      if (!url) {
-        showToast("Apps Script URL을 먼저 입력해주세요");
-        return;
-      }
-
-      const token = getToken();
-      localStorage.setItem("briefing_api_url", url);
-      if (token) localStorage.setItem("briefing_token", token);
-
-      const payload = {
-        token,
-        title: value("title"),
-        category: value("category"),
-        summary: value("summary"),
-        body: value("body"),
-        imageUrl: value("imageUrl"),
-        sourceUrl: value("sourceUrl")
-      };
-
-      if (!payload.title || (!payload.summary && !payload.body)) {
-        showToast("제목과 내용을 입력해주세요");
-        return;
-      }
-
-      try {
-        await fetch(url, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(payload)
-        });
-        showToast("등록 요청을 보냈습니다");
-        ["title", "summary", "body", "imageUrl", "sourceUrl"].forEach(id => document.getElementById(id).value = "");
-        setTimeout(loadPosts, 1600);
-      } catch (err) {
-        showToast("등록 실패: Apps Script URL을 확인해주세요");
-      }
     }
 
     function openPost(index) {
@@ -518,14 +365,12 @@
       document.getElementById("modalBody").textContent = post.body || post.summary || "";
       const links = [];
       if (post.htmlFileId) {
-        links.push('<a class="read" href="./html-viewer.html?id=' + encodeURIComponent(post.htmlFileId) + '" target="_blank" rel="noopener">저장된 HTML 열기</a>');
-      } else if (post.htmlFileUrl) {
-        links.push('<a class="read" href="' + escapeAttr(post.htmlFileUrl) + '" target="_blank" rel="noopener">Drive HTML 열기</a>');
+        links.push('<a class="btn primary" href="./html-viewer.html?id=' + encodeURIComponent(post.htmlFileId) + '" target="_blank" rel="noopener">저장된 HTML 열기</a>');
       }
       if (post.sourceUrl) {
-        links.push('<a class="read" href="' + escapeAttr(post.sourceUrl) + '" target="_blank" rel="noopener">자세히 보기 링크 열기</a>');
+        links.push('<a class="btn" href="' + escapeAttr(post.sourceUrl) + '" target="_blank" rel="noopener">출처 보기</a>');
       }
-      document.getElementById("modalSource").innerHTML = links.join(' &nbsp; ');
+      document.getElementById("modalLinks").innerHTML = links.join("");
       document.getElementById("modal").classList.add("open");
     }
 
@@ -535,22 +380,22 @@
       }
     }
 
-    function value(id) {
-      return (document.getElementById(id).value || "").trim();
+    function showState(message) {
+      const state = document.getElementById("state");
+      state.textContent = message;
+      state.classList.add("show");
+      clearTimeout(state._timer);
+      state._timer = setTimeout(hideState, 2600);
+    }
+
+    function hideState() {
+      document.getElementById("state").classList.remove("show");
     }
 
     function formatDate(value) {
       const date = new Date(value);
       if (Number.isNaN(date.getTime())) return "";
       return date.toLocaleDateString("ko-KR", { month: "short", day: "numeric" });
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-      clearTimeout(toast._timer);
-      toast._timer = setTimeout(() => toast.classList.remove("show"), 2400);
     }
 
     function escapeHtml(value) {
@@ -567,7 +412,7 @@
       return escapeHtml(value).replace(/`/g, "&#096;");
     }
 
-    boot();
+    loadPosts();
   </script>
 </body>
 </html>

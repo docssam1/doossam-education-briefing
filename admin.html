@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>doossam HTML 저장소</title>
+  <title>doossam 교육 브리핑 관리자</title>
   <style>
     :root {
       --bg: #f6f7f9;
@@ -12,7 +12,7 @@
       --muted: #64748b;
       --line: #e5e7eb;
       --brand: #155e75;
-      --brand2: #0f766e;
+      --danger: #dc2626;
       --soft: #ecfeff;
       --shadow: 0 18px 50px rgba(15, 23, 42, .10);
     }
@@ -26,7 +26,7 @@
     .shell {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 34px 0 80px;
+      padding: 34px 0 76px;
     }
     .top {
       display: grid;
@@ -56,7 +56,7 @@
       color: var(--muted);
       line-height: 1.8;
       font-size: 16px;
-      max-width: 680px;
+      max-width: 700px;
     }
     .actions {
       display: flex;
@@ -80,9 +80,14 @@
       border-color: var(--brand);
       color: white;
     }
-    .grid {
+    .btn.danger {
+      background: #fff1f2;
+      border-color: #fecdd3;
+      color: var(--danger);
+    }
+    .layout {
       display: grid;
-      grid-template-columns: .92fr 1.08fr;
+      grid-template-columns: .9fr 1.1fr;
       gap: 24px;
       margin-top: 28px;
       align-items: start;
@@ -121,20 +126,13 @@
       outline: none;
     }
     textarea {
-      min-height: 180px;
+      min-height: 130px;
       resize: vertical;
       line-height: 1.7;
-      font-family: "SF Mono", Consolas, ui-monospace, monospace;
-      font-size: 13px;
-    }
-    textarea.body-text {
-      min-height: 110px;
-      font-family: inherit;
-      font-size: 14px;
     }
     input:focus, textarea:focus, select:focus {
-      border-color: var(--brand2);
-      box-shadow: 0 0 0 4px rgba(15, 118, 110, .10);
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px rgba(21, 94, 117, .10);
       background: white;
     }
     .hint {
@@ -183,7 +181,7 @@
       font-size: 13px;
     }
     .empty {
-      padding: 40px 20px;
+      padding: 36px 20px;
       text-align: center;
       color: var(--muted);
       border: 1px dashed #cbd5e1;
@@ -204,8 +202,8 @@
       z-index: 80;
     }
     .toast.show { display: block; }
-    @media (max-width: 900px) {
-      .top, .grid { grid-template-columns: 1fr; }
+    @media (max-width: 920px) {
+      .top, .layout { grid-template-columns: 1fr; }
       .actions { justify-content: flex-start; }
       .panel.sticky { position: static; }
     }
@@ -215,20 +213,20 @@
   <main class="shell">
     <header class="top">
       <div>
-        <div class="eyebrow">drive html archive</div>
-        <h1>교육 브리핑<br>HTML 저장소</h1>
-        <p class="lead">GFIELD 매거진으로 만든 결과 HTML을 Google Drive에 저장하고, 필요한 글은 게시판에도 같이 공개합니다.</p>
+        <div class="eyebrow">admin console</div>
+        <h1>교육 브리핑<br>관리자</h1>
+        <p class="lead">게시글 등록과 삭제를 관리합니다. HTML 결과물 저장은 별도 저장소 화면에서 처리합니다.</p>
       </div>
-      <div class="actions">
-        <a class="btn" href="./index.html">게시판 보기</a>
-        <a class="btn" href="./admin.html">관리자</a>
-        <button class="btn" type="button" onclick="loadFiles()">새로고침</button>
-      </div>
+      <nav class="actions">
+        <a class="btn" href="./index.html">공개 게시판</a>
+        <a class="btn" href="./html-storage.html">HTML 저장소</a>
+        <button class="btn primary" type="button" onclick="loadPosts()">새로고침</button>
+      </nav>
     </header>
 
-    <section class="grid">
+    <section class="layout">
       <aside class="panel sticky">
-        <h2>HTML 저장</h2>
+        <h2>게시글 등록</h2>
         <div class="field">
           <label for="apiUrl">Apps Script URL</label>
           <input id="apiUrl" placeholder="https://script.google.com/macros/s/.../exec">
@@ -239,18 +237,10 @@
         </div>
         <div class="field">
           <label for="title">제목</label>
-          <input id="title" placeholder="예: 대치동 교육 트렌드 분석">
+          <input id="title" placeholder="예: 이번 주 대치동 교육 뉴스">
         </div>
         <div class="field">
-          <label for="summary">요약</label>
-          <textarea class="body-text" id="summary" placeholder="저장 목록과 게시판 카드에 보일 요약"></textarea>
-        </div>
-        <div class="field">
-          <label for="html">HTML 코드</label>
-          <textarea id="html" placeholder="GFIELD 매거진 결과 HTML을 붙여넣으세요"></textarea>
-        </div>
-        <div class="field">
-          <label for="category">게시판 분류</label>
+          <label for="category">분류</label>
           <select id="category">
             <option>교육 브리핑</option>
             <option>입시 뉴스</option>
@@ -260,40 +250,41 @@
           </select>
         </div>
         <div class="field">
-          <label for="sourceUrl">출처/자세히 보기 링크</label>
-          <input id="sourceUrl" placeholder="선택 사항">
+          <label for="summary">요약</label>
+          <textarea id="summary" placeholder="카드에 보일 짧은 요약"></textarea>
         </div>
         <div class="field">
-          <label for="imageUrl">게시판 카드 이미지 URL</label>
+          <label for="body">본문</label>
+          <textarea id="body" placeholder="자세히 보기에 들어갈 전체 내용"></textarea>
+        </div>
+        <div class="field">
+          <label for="imageUrl">이미지 URL</label>
           <input id="imageUrl" placeholder="선택 사항">
         </div>
         <div class="field">
-          <label>
-            <input id="publishToBoard" type="checkbox" style="width:auto;margin-right:8px" checked>
-            저장 후 게시판에도 공개
-          </label>
+          <label for="sourceUrl">출처/자세히 보기 링크</label>
+          <input id="sourceUrl" placeholder="선택 사항">
         </div>
-        <button class="btn primary" type="button" style="width:100%" onclick="saveHtml()">Google Drive에 저장</button>
-        <p class="hint">Apps Script URL과 토큰은 현재 브라우저에만 저장됩니다. HTML 파일은 Apps Script가 만든 Google Drive 폴더에 저장됩니다.</p>
+        <button class="btn primary" type="button" style="width:100%" onclick="submitPost()">등록하기</button>
+        <p class="hint">Apps Script URL과 관리자 토큰은 이 브라우저에만 저장됩니다. 공개 게시판에는 삭제/등록 UI가 보이지 않습니다.</p>
       </aside>
 
       <section class="panel">
-        <h2>저장된 HTML</h2>
+        <h2>게시글 관리</h2>
         <div class="list" id="list"></div>
       </section>
     </section>
   </main>
-
   <div class="toast" id="toast"></div>
 
   <script>
     const APPS_SCRIPT_URL = "";
-    let files = [];
+    let posts = [];
 
     function boot() {
       document.getElementById("apiUrl").value = localStorage.getItem("briefing_api_url") || APPS_SCRIPT_URL || "";
       document.getElementById("token").value = localStorage.getItem("briefing_token") || "";
-      loadFiles();
+      loadPosts();
     }
 
     function getApiUrl() {
@@ -304,27 +295,26 @@
       return (document.getElementById("token").value || localStorage.getItem("briefing_token") || "").trim();
     }
 
-    function loadFiles() {
+    function loadPosts() {
       const url = getApiUrl();
       if (!url) {
-        document.getElementById("list").innerHTML = '<div class="empty">Apps Script URL을 입력하면 Drive 저장 목록이 표시됩니다.</div>';
+        document.getElementById("list").innerHTML = '<div class="empty">Apps Script URL을 입력하면 게시글 목록이 표시됩니다.</div>';
         return;
       }
-
       localStorage.setItem("briefing_api_url", url);
-      const callback = "htmlFilesCallback_" + Date.now();
+      const callback = "adminPostsCallback_" + Date.now();
       window[callback] = function(data) {
         delete window[callback];
         script.remove();
         if (data && data.ok) {
-          files = data.files || [];
-          renderFiles();
+          posts = data.posts || [];
+          renderPosts();
         } else {
-          showToast("저장 목록을 불러오지 못했습니다");
+          showToast("목록을 불러오지 못했습니다");
         }
       };
       const script = document.createElement("script");
-      script.src = url + "?action=listHtml&callback=" + callback;
+      script.src = url + "?action=listPosts&callback=" + callback;
       script.onerror = function() {
         delete window[callback];
         showToast("Apps Script URL을 확인해주세요");
@@ -332,28 +322,27 @@
       document.body.appendChild(script);
     }
 
-    function renderFiles() {
+    function renderPosts() {
       const list = document.getElementById("list");
-      if (!files.length) {
-        list.innerHTML = '<div class="empty">아직 저장된 HTML이 없습니다.</div>';
+      if (!posts.length) {
+        list.innerHTML = '<div class="empty">아직 등록된 게시글이 없습니다.</div>';
         return;
       }
-      list.innerHTML = files.map(file => [
+      list.innerHTML = posts.map(post => [
         '<article class="item">',
-        '  <div class="item-meta"><span>HTML</span><span>' + formatDate(file.createdAt) + '</span></div>',
-        '  <h3>' + escapeHtml(file.title) + '</h3>',
-        '  <p>' + escapeHtml(file.summary || "저장된 HTML 콘텐츠") + '</p>',
+        '  <div class="item-meta"><span>' + escapeHtml(post.category || "교육 브리핑") + '</span><span>' + formatDate(post.createdAt) + '</span></div>',
+        '  <h3>' + escapeHtml(post.title) + '</h3>',
+        '  <p>' + escapeHtml(post.summary || "") + '</p>',
         '  <div class="item-actions">',
-        '    <a class="btn small primary" href="./html-viewer.html?id=' + encodeURIComponent(file.fileId) + '" target="_blank" rel="noopener">HTML 보기</a>',
-        '    <a class="btn small" href="' + escapeAttr(file.fileUrl) + '" target="_blank" rel="noopener">Drive 파일</a>',
-        file.sourceUrl ? '    <a class="btn small" href="' + escapeAttr(file.sourceUrl) + '" target="_blank" rel="noopener">출처 보기</a>' : '',
-        '    <button class="btn small" style="color:#dc2626;background:#fff1f2;border-color:#fecdd3" type="button" onclick="deleteHtml(\\'' + escapeJs(file.fileId) + '\\')">삭제</button>',
+        post.htmlFileId ? '    <a class="btn small primary" href="./html-viewer.html?id=' + encodeURIComponent(post.htmlFileId) + '" target="_blank" rel="noopener">HTML 보기</a>' : '',
+        post.sourceUrl ? '    <a class="btn small" href="' + escapeAttr(post.sourceUrl) + '" target="_blank" rel="noopener">출처</a>' : '',
+        '    <button class="btn small danger" type="button" onclick="deletePost(\\'' + escapeJs(post.id) + '\\')">삭제</button>',
         '  </div>',
         '</article>'
       ].join("")).join("");
     }
 
-    async function saveHtml() {
+    async function submitPost() {
       const url = getApiUrl();
       if (!url) {
         showToast("Apps Script URL을 먼저 입력해주세요");
@@ -364,22 +353,36 @@
       if (token) localStorage.setItem("briefing_token", token);
 
       const payload = {
-        action: "saveHtml",
         token,
         title: value("title"),
-        summary: value("summary"),
-        html: value("html"),
         category: value("category"),
-        sourceUrl: value("sourceUrl"),
+        summary: value("summary"),
+        body: value("body"),
         imageUrl: value("imageUrl"),
-        publishToBoard: document.getElementById("publishToBoard").checked ? "Y" : "N"
+        sourceUrl: value("sourceUrl")
       };
-
-      if (!payload.title || !payload.html) {
-        showToast("제목과 HTML 코드를 입력해주세요");
+      if (!payload.title || (!payload.summary && !payload.body)) {
+        showToast("제목과 내용을 입력해주세요");
         return;
       }
+      await postNoCors(url, payload, "등록 요청을 보냈습니다");
+      ["title", "summary", "body", "imageUrl", "sourceUrl"].forEach(id => document.getElementById(id).value = "");
+      setTimeout(loadPosts, 1600);
+    }
 
+    async function deletePost(id) {
+      const url = getApiUrl();
+      const token = getToken();
+      if (!url || !token) {
+        showToast("Apps Script URL과 관리자 토큰이 필요합니다");
+        return;
+      }
+      if (!confirm("이 게시글을 삭제할까요?")) return;
+      await postNoCors(url, { action: "deletePost", token, id }, "삭제 요청을 보냈습니다");
+      setTimeout(loadPosts, 1600);
+    }
+
+    async function postNoCors(url, payload, message) {
       try {
         await fetch(url, {
           method: "POST",
@@ -387,33 +390,9 @@
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload)
         });
-        showToast("저장 요청을 보냈습니다");
-        ["title", "summary", "html", "sourceUrl", "imageUrl"].forEach(id => document.getElementById(id).value = "");
-        setTimeout(loadFiles, 1800);
+        showToast(message);
       } catch (err) {
-        showToast("저장 실패: Apps Script URL을 확인해주세요");
-      }
-    }
-
-    async function deleteHtml(fileId) {
-      const url = getApiUrl();
-      const token = getToken();
-      if (!url || !token) {
-        showToast("Apps Script URL과 관리자 토큰이 필요합니다");
-        return;
-      }
-      if (!confirm("이 HTML 파일을 삭제할까요? Drive 파일도 휴지통으로 이동됩니다.")) return;
-      try {
-        await fetch(url, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({ action: "deleteHtml", token, fileId })
-        });
-        showToast("삭제 요청을 보냈습니다");
-        setTimeout(loadFiles, 1600);
-      } catch (err) {
-        showToast("삭제 실패: Apps Script URL을 확인해주세요");
+        showToast("요청 실패: Apps Script URL을 확인해주세요");
       }
     }
 

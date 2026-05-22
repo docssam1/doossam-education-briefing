@@ -50,6 +50,14 @@ function doPost(e) {
       const file = saveHtmlFile_(body);
       return output_({ ok: true, file: file }, body.callback);
     }
+    if (body.action === 'deletePost') {
+      deletePost_(body.id);
+      return output_({ ok: true }, body.callback);
+    }
+    if (body.action === 'deleteHtml') {
+      deleteHtml_(body.id || body.fileId);
+      return output_({ ok: true }, body.callback);
+    }
 
     const post = normalizePost_(body);
     appendPost_(post);
@@ -202,6 +210,45 @@ function appendPost_(post) {
   } finally {
     lock.releaseLock();
   }
+}
+
+function deletePost_(id) {
+  markStatus_(POSTS_SHEET, String(id || '').trim(), 'deleted');
+}
+
+function deleteHtml_(idOrFileId) {
+  const id = String(idOrFileId || '').trim();
+  if (!id) throw new Error('id_required');
+
+  const ss = getSpreadsheet_();
+  const sheet = getSheet_(ss, HTML_SHEET);
+  ensureHtmlHeader_(sheet);
+  const values = sheet.getDataRange().getValues();
+
+  for (let r = 1; r < values.length; r++) {
+    if (values[r][0] === id || values[r][4] === id) {
+      sheet.getRange(r + 1, 8).setValue('deleted');
+      try {
+        DriveApp.getFileById(values[r][4]).setTrashed(true);
+      } catch (err) {}
+      return;
+    }
+  }
+  throw new Error('not_found');
+}
+
+function markStatus_(sheetName, id, status) {
+  if (!id) throw new Error('id_required');
+  const ss = getSpreadsheet_();
+  const sheet = getSheet_(ss, sheetName);
+  const values = sheet.getDataRange().getValues();
+  for (let r = 1; r < values.length; r++) {
+    if (values[r][0] === id) {
+      sheet.getRange(r + 1, values[0].length).setValue(status);
+      return;
+    }
+  }
+  throw new Error('not_found');
 }
 
 function normalizePost_(body) {

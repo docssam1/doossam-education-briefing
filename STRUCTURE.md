@@ -2,11 +2,11 @@
 
 ```mermaid
 flowchart TD
-  A["GitHub Pages: 교육브리핑/index.html"] --> B["게시판 카드 목록"]
-  A --> C["게시글 등록 폼"]
-  D["GitHub Pages: 교육브리핑/html-storage.html"] --> E["HTML 저장 폼"]
+  A["GitHub Pages: index.html"] --> B["공개 게시판 카드 목록"]
+  M["GitHub Pages: admin.html"] --> C["관리자 게시글 등록/삭제"]
+  D["GitHub Pages: html-storage.html"] --> E["관리자 HTML 저장/삭제"]
   D --> F["Drive HTML 저장 목록"]
-  K["GitHub Pages: 교육브리핑/html-viewer.html"] --> G
+  K["GitHub Pages: html-viewer.html"] --> G
   C --> G["Apps Script Web App"]
   E --> G
   G --> H["Google Sheet: posts"]
@@ -19,7 +19,9 @@ flowchart TD
 
 ## 역할
 
-- GitHub Pages: 사용자가 보는 화면입니다.
+- `index.html`: 외부 방문자가 보는 공개 게시판입니다.
+- `admin.html`: 관리자가 게시글을 등록/삭제합니다.
+- `html-storage.html`: 관리자가 HTML 파일을 Drive에 저장/삭제합니다.
 - Apps Script: 글 등록, 목록 불러오기, HTML 파일 저장을 처리합니다.
 - Google Sheet `posts`: 게시판 카드 데이터를 저장합니다.
 - Google Sheet `html_files`: Drive에 저장된 HTML 파일 목록을 저장합니다.
