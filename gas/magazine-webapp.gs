@@ -1,6 +1,6 @@
 const ADMIN_FOLDER_ID = '1XZ5mKpzTZfG1yTmlscH4dBTS4E2NzVSb';
 const VIEW_FOLDER_ID = '1yhFg98edwY2IOMa7-7o2ZTN54CksBlqK';
-const DEFAULT_TOKEN = 'CHANGE_THIS_TOKEN';
+const DEFAULT_TOKEN = 'gfield7772';
 
 function doGet(e) {
   const action = (e.parameter.action || '').trim();
